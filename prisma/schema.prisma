@@ -1,0 +1,86 @@
+// prisma/schema.prisma
+datasource db {
+  provider = "mysql" // or your database provider
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String   @unique
+  password   String
+  created_at DateTime @default(now())
+}
+
+
+
+
+
+model ProductCategory {
+  id                 Int      @id @default(autoincrement())
+  image              String
+  category_name      String
+  category_description String
+  slug               String   @unique
+  products           Product[]
+
+  @@index([slug])
+}
+
+model Product {
+  id          Int              @id @default(autoincrement())
+  name        String
+  category_id Int
+  image       String
+  description String
+  offer       String
+  price       String?
+  status      Status           @default(ACTIVE)
+  slug        String           @unique
+
+  category    ProductCategory  @relation(fields: [category_id], references: [id])
+  images      ProductImage[]   @relation("ProductImages") // Relation to ProductImage
+
+  created_at  DateTime         @default(now())
+  updated_at  DateTime         @updatedAt
+
+  @@index([slug])
+}
+
+enum Status {
+  ACTIVE
+  DEACTIVE
+}
+
+model ProductImage {
+  id          Int      @id @default(autoincrement())
+  product_id  Int
+  image_path  String
+  alt_text    String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  product     Product  @relation("ProductImages", fields: [product_id], references: [id])
+
+  @@index([product_id])
+}
+
+model NewCollection {
+  id            Int      @id @default(autoincrement())
+  youtube_link  String?
+  facebook_link String?
+  created_at    DateTime @default(now())
+}
+model ProductInquiry {
+  id           Int      @id @default(autoincrement())
+  productName  String   @db.VarChar(255)
+  fullName     String   @db.VarChar(255)
+  email        String   @db.VarChar(255)
+  phone        String   @db.VarChar(20)
+  message      String?   @db.Text
+  createdAt    DateTime @default(now())
+}

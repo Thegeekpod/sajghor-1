@@ -1,0 +1,39 @@
+{
+  "name": "sajghar",
+  "version": "0.1.0",
+  "private": true,
+
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.19.0",
+    "axios": "^1.7.5",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "fs": "^0.0.1-security",
+    "jquery": "^3.7.1",
+    "mysql2": "^3.11.0",
+    "net": "^1.0.2",
+    "next": "^14.2.7",
+    "next-auth": "^4.24.7",
+    "nodemailer": "^6.9.15",
+    "owl.carousel": "^2.3.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-loading-skeleton": "^3.4.0",
+    "react-owl-carousel": "^2.3.3",
+    "react-slick": "^0.30.2",
+    "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.12.4",
+    "tls": "^0.0.1"
+  },
+  "devDependencies": {
+    "prisma": "^5.18.0"
+  }
+}
